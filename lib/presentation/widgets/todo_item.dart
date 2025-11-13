@@ -47,7 +47,7 @@ class TodoItemWidget extends StatelessWidget {
         
             IconButton(
               icon: const Icon(Icons.edit_outlined),
-              color: theme.primaryColor,
+             color: Theme.of(context).colorScheme.primary,
               tooltip: 'Edit Task',
               onPressed: () {
                 showDialog(
@@ -62,7 +62,7 @@ class TodoItemWidget extends StatelessWidget {
 
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              color: Colors.redAccent,
+             color: Theme.of(context).colorScheme.error,
               tooltip: 'Delete Task',
               onPressed: () {
                 _confirmDelete(context, todo);

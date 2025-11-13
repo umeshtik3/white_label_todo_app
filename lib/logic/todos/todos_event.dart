@@ -26,3 +26,14 @@ class ToggleTodoStatus extends TodosEvent {
 }
 
 class ClearCompleted extends TodosEvent {}
+
+class FilterTodos extends TodosEvent {
+  final String filter; // 'all', 'active', 'completed'
+  FilterTodos(this.filter);
+}
+
+class SearchTodos extends TodosEvent {
+  final String query;
+  SearchTodos(this.query);
+}
+

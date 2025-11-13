@@ -21,9 +21,9 @@
       }
     },
     "components": {
-      "showAddButton": false,
-      "showSearchBar": true,
-      "showFilters": true,
+      "showAddButton": true,
+      "showSearchBar": false,
+      "showFilters": false,
       "customButtons": [
         {
           "id": "export",
