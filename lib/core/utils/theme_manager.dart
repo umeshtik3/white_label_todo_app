@@ -26,7 +26,6 @@ class ThemeManager {
         secondary: secondary,
         brightness: brightness,
         surface: surface,
-        // background: background,
         onPrimary: onPrimary,
         onSurface: onBackground,
       ),
