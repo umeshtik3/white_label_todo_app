@@ -17,7 +17,7 @@ void main() async {
   );
   final repository = ConfigRepositoryImpl(
     localDataSource: localDataSource,
-    remoteDataSource: remoteDataSource,
+    // remoteDataSource: remoteDataSource,
   );
 
   runApp(MyApp(repository: repository));
