@@ -5,7 +5,11 @@ import 'package:white_label_todo_app/data/config/datasource/local_config_datasou
 import 'package:white_label_todo_app/data/config/datasource/remote_config_datasource.dart';
 import 'package:white_label_todo_app/data/config/repositories/config_repository.dart';
 import 'package:white_label_todo_app/data/config/repositories/config_repository_impl.dart';
+import 'package:white_label_todo_app/data/todos/datasource/todos_local_datasource.dart';
+import 'package:white_label_todo_app/data/todos/repository/todos_repository_impl.dart';
 import 'package:white_label_todo_app/logic/config/config_cubit.dart';
+import 'package:white_label_todo_app/logic/todos/todos_bloc.dart';
+import 'package:white_label_todo_app/logic/todos/todos_event.dart';
 import 'package:white_label_todo_app/presentation/screens/home_screen.dart';
 
 void main() async {
@@ -33,26 +37,42 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => ConfigCubit(repository)..loadConfig(),
       child: BlocBuilder<ConfigCubit, ConfigState>(
-  builder: (context, state) {
-    if (state is ConfigLoading) {
-      return const MaterialApp(home: Scaffold(body: Center(child: CircularProgressIndicator())));
-    } else if (state is ConfigLoaded) {
-      final config = state.config;
-      final brightness = WidgetsBinding.instance.window.platformBrightness;
+        builder: (context, state) {
+          if (state is ConfigLoading) {
+            return const MaterialApp(
+              home: Scaffold(body: Center(child: CircularProgressIndicator())),
+            );
+          } else if (state is ConfigLoaded) {
+            final config = state.config;
+            final brightness =
+                WidgetsBinding.instance.window.platformBrightness;
 
-      return MaterialApp(
-        title: config.appName,
-        theme: ThemeManager.fromConfig(config, brightness),
-        home: HomeScreen(),
-      );
-    } else if (state is ConfigError) {
-      return MaterialApp(
-        home: Scaffold(body: Center(child: Text('Error: ${state.message}'))),
-      );
-    }
-    return const SizedBox.shrink();
-  },
-)
- );
+            return BlocProvider<TodosBloc>(
+              create: (_) => TodosBloc(
+                TodoRepositoryImpl(
+                  localDataSource: TodoLocalDataSource(),
+                  // remoteDataSource: TodoRemoteDataSource(
+                  //   apiBaseUrl:
+                  //       'https://api.example.com', // Replace with your test API
+                  // ),
+                ),
+              )..add(LoadTodos()),
+              child: MaterialApp(
+                title: config.appName,
+                theme: ThemeManager.fromConfig(config, brightness),
+                home: HomeScreen(),
+              ),
+            );
+          } else if (state is ConfigError) {
+            return MaterialApp(
+              home: Scaffold(
+                body: Center(child: Text('Error: ${state.message}')),
+              ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+    );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:white_label_todo_app/logic/todos/todos_bloc.dart';
 import 'package:white_label_todo_app/presentation/screens/dynamic_renderer.dart';
+import 'package:white_label_todo_app/presentation/screens/todo_list.dart';
+import 'package:white_label_todo_app/presentation/widgets/add_todo_dialog.dart';
 import '../../../logic/config/config_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -36,9 +39,18 @@ class HomeScreen extends StatelessWidget {
                     child: Wrap(
                       spacing: 8,
                       children: [
-                        FilterChip(label: const Text('All'), onSelected: (_) {}),
-                        FilterChip(label: const Text('Active'), onSelected: (_) {}),
-                        FilterChip(label: const Text('Completed'), onSelected: (_) {}),
+                        FilterChip(
+                          label: const Text('All'),
+                          onSelected: (_) {},
+                        ),
+                        FilterChip(
+                          label: const Text('Active'),
+                          onSelected: (_) {},
+                        ),
+                        FilterChip(
+                          label: const Text('Completed'),
+                          onSelected: (_) {},
+                        ),
                       ],
                     ),
                   ),
@@ -47,22 +59,18 @@ class HomeScreen extends StatelessWidget {
                 if (components.customButtons.isNotEmpty)
                   DynamicRenderer(buttons: components.customButtons),
 
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      'To-Do List will appear here',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ),
+                Expanded(child: const TodoListScreen()),
               ],
             ),
             floatingActionButton: components.showAddButton
                 ? FloatingActionButton(
                     onPressed: () {
-                      // Add-To-Do dialog will go here
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Add To-Do tapped')),
+                      showDialog(
+                        context: context,
+                        builder: (_) => BlocProvider.value(
+                          value: context.read<TodosBloc>(),
+                          child: const AddTodoDialog(),
+                        ),
                       );
                     },
                     child: const Icon(Icons.add),
@@ -72,14 +80,10 @@ class HomeScreen extends StatelessWidget {
         }
 
         if (state is ConfigError) {
-          return Scaffold(
-            body: Center(child: Text('Error: ${state.message}')),
-          );
+          return Scaffold(body: Center(child: Text('Error: ${state.message}')));
         }
 
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       },
     );
   }

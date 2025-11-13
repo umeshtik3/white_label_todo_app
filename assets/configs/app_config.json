@@ -1,7 +1,7 @@
 {
     "appName": "WhiteLabel ToDo",
     "appId": "com.client.todo.demo",
-    "themeMode": "system",
+    "themeMode": "dark",
     "themes": {
       "light": {
         "primary": "#0D47A1",
@@ -21,7 +21,7 @@
       }
     },
     "components": {
-      "showAddButton": true,
+      "showAddButton": false,
       "showSearchBar": true,
       "showFilters": true,
       "customButtons": [

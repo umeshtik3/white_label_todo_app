@@ -26,9 +26,9 @@ class ThemeManager {
         secondary: secondary,
         brightness: brightness,
         surface: surface,
-        background: background,
+        // background: background,
         onPrimary: onPrimary,
-        onBackground: onBackground,
+        onSurface: onBackground,
       ),
       scaffoldBackgroundColor: background,
       appBarTheme: AppBarTheme(
@@ -51,7 +51,7 @@ class ThemeManager {
       ),
       textTheme: TextTheme(
         bodyLarge: TextStyle(color: onBackground),
-        bodyMedium: TextStyle(color: onBackground.withOpacity(0.9)),
+        bodyMedium: TextStyle(color: onBackground.withValues(alpha:0.9)),
       ),
     );
   }
