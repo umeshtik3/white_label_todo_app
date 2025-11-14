@@ -32,9 +32,10 @@ The JSON config structure: `appName` (string) - displayed in app bar, `appId` (s
 
 1. Visit `https://www.mockable.io` and select **Try Now** (no login required).
 2. Choose **New REST Mock**.
-3. Provide a path (e.g., `/todos`) and paste the JSON response you want the app to consume (match the todo model fields).
-4. Save the mock, then press the **Started** button so the endpoint goes live.
-5. Copy the generated Mockable URL and use it as the remote base URL in `injection.dart` or wherever the REST endpoint is configured.
+3. Find a app configuration json and todo list mock json in `assets/` directory.
+4. Provide a path (e.g., `/todos`) and paste the JSON response you want the app to consume (match the todo model fields).
+5. Save the mock, then press the **Started** button so the endpoint goes live.
+6. Copy the generated Mockable URL and use it as the remote base URL in `injection.dart` or wherever the REST endpoint is configured.
 
 Once these steps are complete, the remote mode instructions above will fetch todos from your Mockable mock.
 
