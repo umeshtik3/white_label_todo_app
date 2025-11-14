@@ -1,0 +1,23 @@
+[
+    {
+      "id": "1",
+      "title": "Buy groceries",
+      "isCompleted": false
+    },
+    {
+      "id": "2",
+      "title": "Call the electrician",
+      "isCompleted": true
+    },
+    {
+      "id": "3",
+      "title": "Finish Flutter project proposal",
+      "isCompleted": false
+    },
+    {
+      "id": "4",
+      "title": "Schedule gym session",
+      "isCompleted": false
+    }
+  ]
+  
