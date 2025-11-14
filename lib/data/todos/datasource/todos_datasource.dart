@@ -6,5 +6,5 @@ abstract class TodoDataSource {
   Future<void> addTodo(TodoModel todo);
   Future<void> updateTodo(TodoModel todo);
   Future<void> deleteTodo(String id);
-  Future<void> clearCompleted();
+
 }

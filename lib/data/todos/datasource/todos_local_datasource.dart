@@ -41,8 +41,4 @@ class TodoLocalDataSource implements TodoDataSource {
     _todos.removeWhere((t) => t.id == id);
   }
 
-  @override
-  Future<void> clearCompleted() async {
-    _todos.removeWhere((t) => t.isCompleted);
-  }
 }

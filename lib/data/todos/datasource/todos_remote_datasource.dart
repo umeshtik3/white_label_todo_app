@@ -42,9 +42,4 @@ class TodoRemoteDataSource implements TodoDataSource {
   Future<void> deleteTodo(String id) async {
     await http.delete(Uri.parse('$apiBaseUrl/todos/$id'));
   }
-
-  @override
-  Future<void> clearCompleted() async {
-    await http.delete(Uri.parse('$apiBaseUrl/todos/clear_completed'));
-  }
 }

@@ -12,7 +12,6 @@ import 'package:white_label_todo_app/presentation/screens/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize dependency injection
   configureDependencies();
 
   runApp(const MyApp());

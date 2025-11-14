@@ -48,12 +48,4 @@ class TodoRepositoryImpl implements TodoRepository {
     } catch (_) {}
     await localDataSource.deleteTodo(id);
   }
-
-  @override
-  Future<void> clearCompleted() async {
-    try {
-      if (remoteDataSource != null) await remoteDataSource!.clearCompleted();
-    } catch (_) {}
-    await localDataSource.clearCompleted();
-  }
 }

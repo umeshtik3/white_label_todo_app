@@ -16,7 +16,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     on<UpdateTodo>(_onUpdateTodo);
     on<DeleteTodo>(_onDeleteTodo);
     on<ToggleTodoStatus>(_onToggleTodoStatus);
-    on<ClearCompleted>(_onClearCompleted);
     on<FilterTodos>(_onFilterTodos);
     on<SearchTodos>(_onSearchTodos);
   }
@@ -59,14 +58,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     _applyFilters(emit);
   }
 
-  Future<void> _onClearCompleted(
-    ClearCompleted event,
-    Emitter<TodosState> emit,
-  ) async {
-    await repository.clearCompleted();
-    _allTodos.removeWhere((t) => t.isCompleted);
-    _applyFilters(emit);
-  }
 
   void _onFilterTodos(FilterTodos event, Emitter<TodosState> emit) {
     if (state is TodosLoaded) {
