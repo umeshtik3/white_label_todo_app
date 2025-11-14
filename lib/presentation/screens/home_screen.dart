@@ -49,7 +49,33 @@ class _HomeScreenState extends State<HomeScreen> {
         final components = config.components;
 
         return Scaffold(
-          appBar: AppBar(title: Text(config.appName)),
+          appBar: AppBar(
+            title: Text(config.appName),
+            actions: [
+              BlocBuilder<ConfigCubit, ConfigState>(
+                builder: (context, configState) {
+                  if (configState is ConfigLoaded) {
+                    final isDark = configState.themeMode == ThemeMode.dark;
+                    return IconButton(
+                      icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                      tooltip: isDark
+                          ? 'Switch to light mode'
+                          : 'Switch to dark mode',
+                      onPressed: () {
+                        context.read<ConfigCubit>().toggleTheme();
+                      },
+                    );
+                  }
+                  return IconButton(
+                    icon: const Icon(Icons.brightness_6),
+                    onPressed: () {
+                      context.read<ConfigCubit>().toggleTheme();
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

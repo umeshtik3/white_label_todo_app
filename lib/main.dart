@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:white_label_todo_app/core/injection/injection.dart';
@@ -31,12 +33,20 @@ class MyApp extends StatelessWidget {
             );
           } else if (state is ConfigLoaded) {
             final config = state.config;
-            final brightness =
-                WidgetsBinding.instance.window.platformBrightness;
+            final themeMode = state.themeMode;
+            final systemBrightness = PlatformDispatcher.instance.platformBrightness;
+            
+            // Determine the actual brightness based on themeMode
+            final brightness = themeMode == ThemeMode.dark
+                ? Brightness.dark
+                : themeMode == ThemeMode.light
+                    ? Brightness.light
+                    : systemBrightness;
 
             return BlocProvider<TodosBloc>(
               create: (_) => getIt<TodosBloc>()..add(LoadTodos()),
               child: MaterialApp(
+                debugShowCheckedModeBanner: false,
                 title: config.appName,
                 theme: ThemeManager.fromConfig(config, brightness),
                 home: HomeScreen(),

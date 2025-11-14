@@ -30,9 +30,13 @@ class ConfigModel {
 
   /// Returns the active theme map depending on themeMode or system brightness.
   Map<String, dynamic> getActiveTheme(Brightness systemBrightness) {
-    String activeKey = themeMode == 'system'
-        ? (systemBrightness == Brightness.dark ? 'dark' : 'light')
-        : themeMode;
+    String activeKey;
+
+    if (themeMode == 'system') {
+      activeKey = systemBrightness == Brightness.dark ? 'dark' : 'light';
+    } else {
+      activeKey = themeMode;
+    }
 
     return themes[activeKey] ?? themes['light'] ?? {};
   }
@@ -76,11 +80,7 @@ class CustomButton {
   final String label;
   final String action;
 
-  CustomButton({
-    required this.id,
-    required this.label,
-    required this.action,
-  });
+  CustomButton({required this.id, required this.label, required this.action});
 
   factory CustomButton.fromJson(Map<String, dynamic> json) {
     return CustomButton(

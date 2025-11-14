@@ -1,41 +1,40 @@
 {
-    "appName": "WhiteLabel ToDo",
-    "appId": "com.client.todo.demo",
-    "themeMode": "dark",
-    "themes": {
-      "light": {
-        "primary": "#0D47A1",
-        "secondary": "#FF6F00",
-        "background": "#FFFFFF",
-        "surface": "#F4F6F8",
-        "onPrimary": "#FFFFFF",
-        "onBackground": "#000000"
-      },
-      "dark": {
-        "primary": "#90CAF9",
-        "secondary": "#FFD54F",
-        "background": "#121212",
-        "surface": "#1E1E1E",
-        "onPrimary": "#000000",
-        "onBackground": "#FFFFFF"
-      }
+  "appName": "WhiteLabel ToDo",
+  "appId": "com.client.todo.demo",
+  "themeMode": "system",
+  "themes": {
+    "light": {
+      "primary": "#0D47A1",
+      "secondary": "#FF6F00",
+      "background": "#FFFFFF",
+      "surface": "#F4F6F8",
+      "onPrimary": "#FFFFFF",
+      "onBackground": "#000000"
     },
-    "components": {
-      "showAddButton": true,
-      "showSearchBar": false,
-      "showFilters": false,
-      "customButtons": [
-        {
-          "id": "export",
-          "label": "Export",
-          "action": "export_todos"
-        },
-        {
-          "id": "clearCompleted",
-          "label": "Clear Completed",
-          "action": "clear_completed"
-        }
-      ]
+    "dark": {
+      "primary": "#90CAF9",
+      "secondary": "#FFD54F",
+      "background": "#121212",
+      "surface": "#1E1E1E",
+      "onPrimary": "#000000",
+      "onBackground": "#FFFFFF"
     }
+  },
+  "components": {
+    "showAddButton": true,
+    "showSearchBar": true,
+    "showFilters": true,
+    "customButtons": [
+      {
+        "id": "export",
+        "label": "Export",
+        "action": "export_todos"
+      },
+      {
+        "id": "clearCompleted",
+        "label": "Clear Completed",
+        "action": "clear_completed"
+      }
+    ]
   }
-  
+}
