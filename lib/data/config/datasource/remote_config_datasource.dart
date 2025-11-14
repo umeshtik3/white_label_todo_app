@@ -4,7 +4,8 @@ import 'package:white_label_todo_app/data/config/datasource/config_datasource.da
 
 import 'package:white_label_todo_app/data/config/model/config_model.dart';
 
-
+// Note: Not annotated with @injectable because it requires apiUrl parameter
+// Register manually in injection.dart if needed
 class ConfigRemoteDataSource implements ConfigDataSource {
   final String apiUrl;
 

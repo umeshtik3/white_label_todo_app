@@ -3,7 +3,8 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:white_label_todo_app/data/todos/datasource/todos_datasource.dart';
 import 'package:white_label_todo_app/data/todos/model/todo_model.dart';
 
-
+// Note: Not using @injectable annotation because of default parameter
+// Registered manually in injection.dart
 class TodoLocalDataSource implements TodoDataSource {
   final String assetPath;
   final List<TodoModel> _todos = [];

@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:white_label_todo_app/data/todos/model/todo_model.dart';
 import 'package:white_label_todo_app/data/todos/repository/todos_repository.dart';
 import 'todos_event.dart';
 import 'todos_state.dart';
 
+@injectable
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodoRepository repository;
   List<TodoModel> _allTodos = [];

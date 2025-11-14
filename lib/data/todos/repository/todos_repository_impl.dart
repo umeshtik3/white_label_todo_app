@@ -3,7 +3,7 @@ import 'package:white_label_todo_app/data/todos/datasource/todos_datasource.dart
 import 'package:white_label_todo_app/data/todos/model/todo_model.dart';
 import 'package:white_label_todo_app/data/todos/repository/todos_repository.dart';
 
-
+// Note: Registered manually in injection.dart to handle optional remoteDataSource
 class TodoRepositoryImpl implements TodoRepository {
   final TodoDataSource localDataSource;
   final TodoDataSource? remoteDataSource;

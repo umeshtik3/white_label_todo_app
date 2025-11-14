@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:white_label_todo_app/core/injection/injection.dart';
 import 'package:white_label_todo_app/core/utils/theme_manager.dart';
-import 'package:white_label_todo_app/data/config/datasource/local_config_datasource.dart';
-import 'package:white_label_todo_app/data/config/datasource/remote_config_datasource.dart';
-import 'package:white_label_todo_app/data/config/repositories/config_repository.dart';
-import 'package:white_label_todo_app/data/config/repositories/config_repository_impl.dart';
-import 'package:white_label_todo_app/data/todos/datasource/todos_local_datasource.dart';
-import 'package:white_label_todo_app/data/todos/repository/todos_repository_impl.dart';
 import 'package:white_label_todo_app/logic/config/config_cubit.dart';
 import 'package:white_label_todo_app/logic/todos/todos_bloc.dart';
 import 'package:white_label_todo_app/logic/todos/todos_event.dart';
@@ -15,27 +10,19 @@ import 'package:white_label_todo_app/presentation/screens/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final localDataSource = ConfigLocalDataSource();
-  final remoteDataSource = ConfigRemoteDataSource(
-    apiUrl: 'https://api.client.com/config',
-  );
-  final repository = ConfigRepositoryImpl(
-    localDataSource: localDataSource,
-    // remoteDataSource: remoteDataSource,
-  );
+  // Initialize dependency injection
+  configureDependencies();
 
-  runApp(MyApp(repository: repository));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final ConfigRepository repository;
-
-  const MyApp({required this.repository, super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ConfigCubit(repository)..loadConfig(),
+      create: (_) => getIt<ConfigCubit>()..loadConfig(),
       child: BlocBuilder<ConfigCubit, ConfigState>(
         builder: (context, state) {
           if (state is ConfigLoading) {
@@ -48,15 +35,7 @@ class MyApp extends StatelessWidget {
                 WidgetsBinding.instance.window.platformBrightness;
 
             return BlocProvider<TodosBloc>(
-              create: (_) => TodosBloc(
-                TodoRepositoryImpl(
-                  localDataSource: TodoLocalDataSource(),
-                  // remoteDataSource: TodoRemoteDataSource(
-                  //   apiBaseUrl:
-                  //       'https://api.example.com', // Replace with your test API
-                  // ),
-                ),
-              )..add(LoadTodos()),
+              create: (_) => getIt<TodosBloc>()..add(LoadTodos()),
               child: MaterialApp(
                 title: config.appName,
                 theme: ThemeManager.fromConfig(config, brightness),

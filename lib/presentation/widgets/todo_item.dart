@@ -20,7 +20,6 @@ class TodoItemWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Row(
           children: [
-          
             Checkbox(
               value: todo.isCompleted,
               onChanged: (_) {
@@ -28,7 +27,6 @@ class TodoItemWidget extends StatelessWidget {
               },
             ),
 
-            
             Expanded(
               child: Text(
                 todo.title,
@@ -44,10 +42,9 @@ class TodoItemWidget extends StatelessWidget {
               ),
             ),
 
-        
             IconButton(
               icon: const Icon(Icons.edit_outlined),
-             color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primary,
               tooltip: 'Edit Task',
               onPressed: () {
                 showDialog(
@@ -62,7 +59,7 @@ class TodoItemWidget extends StatelessWidget {
 
             IconButton(
               icon: const Icon(Icons.delete_outline),
-             color: Theme.of(context).colorScheme.error,
+              color: Theme.of(context).colorScheme.error,
               tooltip: 'Delete Task',
               onPressed: () {
                 _confirmDelete(context, todo);

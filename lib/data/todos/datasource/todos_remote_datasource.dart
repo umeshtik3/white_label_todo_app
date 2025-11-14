@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:white_label_todo_app/data/todos/datasource/todos_datasource.dart';
 import 'package:white_label_todo_app/data/todos/model/todo_model.dart';
 
+// Note: Not annotated with @injectable because it requires apiBaseUrl parameter
+// Register manually in injection.dart if needed
 class TodoRemoteDataSource implements TodoDataSource {
   final String apiBaseUrl;
   TodoRemoteDataSource({required this.apiBaseUrl});

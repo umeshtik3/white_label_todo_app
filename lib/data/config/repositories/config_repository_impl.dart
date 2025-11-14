@@ -4,11 +4,15 @@ import 'package:white_label_todo_app/data/config/model/config_model.dart';
 
 import 'config_repository.dart';
 
+// Note: Registered manually in injection.dart to handle optional remoteDataSource
 class ConfigRepositoryImpl implements ConfigRepository {
   final ConfigDataSource localDataSource;
   final ConfigDataSource? remoteDataSource;
 
-  ConfigRepositoryImpl({required this.localDataSource, this.remoteDataSource});
+  ConfigRepositoryImpl({
+    required this.localDataSource,
+    this.remoteDataSource,
+  });
 
   @override
   Future<ConfigModel> loadConfig() async {

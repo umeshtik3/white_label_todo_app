@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:white_label_todo_app/data/config/model/config_model.dart';
 import '../../../data/config/repositories/config_repository.dart';
 
 part 'config_state.dart';
 
+@injectable
 class ConfigCubit extends Cubit<ConfigState> {
   final ConfigRepository repository;
 
